@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Ethan Sia, Android software engineer: POS systems, hardware peripherals and on-device ML.">
-<style>body{margin:0}img{max-width:100%}</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Ethan Sia Portfolio</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap">
 <style>
@@ -98,7 +98,86 @@ svg text.at { fill: var(--accent); font-weight: 600; }
 .contact { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; margin-top: 18px; }
 footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
 
+/* ---- Payroll phone simulator (one fixed look inside the handset) ---- */
+:root { --app-bg: #f2f6f0; --app-card: #ffffff; --app-ink: #16241a; --app-mut: #5d6e62; --app-line: #d0dad1; --app-green: #1c7541; --app-green-soft: #dcefe2; --app-amber: #c96f1a; --app-cam: #0d1512; --shell: #0f141b; }
+.simrow { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 40px; align-items: start; margin-top: 26px; }
+.sim { width: 310px; max-width: 100%; height: 620px; border: 10px solid var(--shell); border-radius: 36px; background: var(--app-bg); color: var(--app-ink); overflow: hidden; display: flex; flex-direction: column; font-family: var(--body); font-size: 14px; line-height: 1.4; box-shadow: 0 16px 40px rgba(8, 20, 40, .25); outline: 1.5px solid var(--muted); justify-self: center; }
+.sim button { font: inherit; color: inherit; cursor: pointer; }
+.sim button:focus-visible { outline: 2px solid var(--app-amber); outline-offset: 2px; }
+.sbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 14px; background: var(--app-green); color: #fff; font-size: 11.5px; font-family: var(--mono); }
+.sbar .r { display: flex; gap: 8px; align-items: center; }
+.sbar button { background: rgba(255,255,255,.16); border: 0; border-radius: 10px; padding: 2px 8px; color: #fff; }
+.sbar button.off { background: var(--app-amber); }
+.sbar .q { background: #fff; color: var(--app-green); border-radius: 10px; padding: 1px 7px; font-weight: 600; }
+.scr { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+.scr h3 { font-size: 18px; color: var(--app-ink); }
+.scr .sub { color: var(--app-mut); font-size: 12.5px; }
+.back { align-self: flex-start; background: none; border: 0; padding: 0; color: var(--app-green) !important; font-weight: 600; font-size: 13px; }
+.card { background: var(--app-card); border: 1px solid var(--app-line); border-radius: 12px; padding: 12px; display: grid; gap: 8px; }
+.rowbtn { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: var(--app-card); border: 1px solid var(--app-line); border-radius: 12px; padding: 10px 12px; }
+.rowbtn:active, .pbtn:active, .chip:active, .stp button:active { transform: scale(.97); }
+.rowbtn .ic { width: 30px; height: 30px; border-radius: 8px; background: var(--app-green-soft); display: grid; place-items: center; flex: none; font-family: var(--mono); font-size: 10px; font-weight: 600; color: var(--app-green); }
+.rowbtn .tx { flex: 1; min-width: 0; }
+.rowbtn .tx b { display: block; }
+.rowbtn .tx span { color: var(--app-mut); font-size: 12px; }
+.tick { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--app-line); flex: none; }
+.tick.on { background: var(--app-green); border-color: var(--app-green); position: relative; }
+.tick.on::after { content: ""; position: absolute; left: 5px; top: 2px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.pbtn { margin-top: auto; background: var(--app-green); color: #fff !important; border: 0; border-radius: 12px; padding: 12px; font-weight: 600 !important; }
+.pbtn[disabled] { opacity: .45; cursor: default; }
+.pbtn.alt { background: var(--app-card); color: var(--app-green) !important; border: 1px solid var(--app-green); margin-top: 0; }
+.lbl { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--app-mut); font-family: var(--mono); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { background: var(--app-card); border: 1px solid var(--app-line); border-radius: 16px; padding: 5px 11px; font-size: 13px; }
+.chip.on { background: var(--app-green); border-color: var(--app-green); color: #fff !important; }
+.stp { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.stp div { display: flex; align-items: center; gap: 10px; }
+.stp button { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--app-line); background: var(--app-bg); font-size: 18px; line-height: 1; }
+.stp output { min-width: 34px; text-align: center; font-family: var(--mono); font-weight: 600; font-size: 16px; font-variant-numeric: tabular-nums; }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; font-size: 13px; }
+.kv dt, .kv dd { margin: 0; } .kv dd { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+.big { font-family: var(--mono); font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.cam { position: relative; background: var(--app-cam); border-radius: 14px; height: 250px; overflow: hidden; display: grid; place-items: center; }
+.cam svg { width: 130px; height: 170px; }
+.cam .ret { position: absolute; inset: 26px 56px; }
+.cam .ret i { position: absolute; width: 22px; height: 22px; border: 3px solid #6fe39a; }
+.cam .ret i:nth-child(1) { left: 0; top: 0; border-right: 0; border-bottom: 0; }
+.cam .ret i:nth-child(2) { right: 0; top: 0; border-left: 0; border-bottom: 0; }
+.cam .ret i:nth-child(3) { left: 0; bottom: 0; border-right: 0; border-top: 0; }
+.cam .ret i:nth-child(4) { right: 0; bottom: 0; border-left: 0; border-top: 0; }
+.cam .beam { position: absolute; left: 56px; right: 56px; top: 26px; height: 3px; background: #6fe39a; box-shadow: 0 0 12px #6fe39a; opacity: 0; }
+.cam.scan .beam { opacity: 1; animation: beam 1.1s ease-in-out infinite alternate; }
+.cam .hud { position: absolute; left: 10px; bottom: 8px; right: 10px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: #6fe39a; }
+.cam.flash::after { content: ""; position: absolute; inset: 0; background: #fff; animation: flash .35s ease-out forwards; }
+@keyframes beam { from { transform: translateY(0); } to { transform: translateY(195px); } }
+@keyframes flash { from { opacity: .9; } to { opacity: 0; } }
+.bar { height: 8px; background: var(--app-line); border-radius: 4px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--app-green); }
+.art { height: 92px; border-radius: 12px; background: var(--app-green-soft); overflow: hidden; display: grid; place-items: center; }
+.art svg { height: 84px; width: 100%; }
+.truck.go { animation: drive 1s ease-in forwards; }
+@keyframes drive { to { transform: translateX(330px); } }
+.slipwrap { overflow: hidden; border-top: 6px solid var(--shell); border-radius: 3px; }
+.slip { background: #fffef8; color: #23262d; font-family: var(--mono); font-size: 11.5px; padding: 12px; animation: feed 1.4s steps(14) both; }
+.slip hr { border: 0; border-top: 1px dashed #23262d; margin: 6px 0; }
+.slip .kv { font-size: 11.5px; }
+@keyframes feed { from { margin-top: -220px; } to { margin-top: 0; } }
+.qlist { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 12px; font-family: var(--mono); }
+.qlist li { display: flex; justify-content: space-between; gap: 8px; }
+.qlist .p { color: var(--app-amber); } .qlist .s { color: var(--app-green); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; counter-reset: st; max-width: 30em; }
+.steps li { counter-increment: st; padding: 10px 12px 10px 44px; position: relative; border-radius: 8px; color: var(--muted); }
+.steps li::before { content: counter(st); position: absolute; left: 10px; top: 10px; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; font-family: var(--mono); font-size: 12px; }
+.steps li b { display: block; color: var(--fg); font-family: var(--display); }
+.steps li.cur { background: var(--accent-soft); }
+.steps li.cur::before, .steps li.ok::before { border-color: var(--accent); color: var(--accent); }
+.steps li.ok::before { content: "\2713"; background: var(--accent); color: var(--bg); }
+.note { font-size: 13.5px; color: var(--muted); margin-top: 16px; max-width: 30em; }
+.demolink { display: inline-block; margin-top: 12px; font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { .cam.scan .beam, .truck.go, .slip, .cam.flash::after { animation: none; } }
+
 @media (max-width: 720px) {
+  .simrow { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .hero { grid-template-columns: minmax(0, 1fr); padding-block: 36px; }
   .project { grid-template-columns: minmax(0, 1fr); gap: 18px; }
   .project figure { order: 2; }
@@ -111,6 +190,7 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
 <nav>
   <span class="brand">Ethan Sia</span>
   <ul>
+    <li><a href="#demo">Try the app</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#work">How I work</a></li>
@@ -150,6 +230,29 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
     <p class="c">THANK YOU</p>
   </div>
 </header>
+
+<section id="demo">
+  <p class="eyebrow">Interactive demo</p>
+  <h2>Try a harvest day in the Payroll app</h2>
+  <p class="intro">OPSMobile_Payroll runs on handhelds in an oil palm estate. It clocks workers in by face, counts the fresh fruit bunches (FFB) they harvest, tracks loading and transport, and records the weighbridge ticket at the mill. Tap through it below.</p>
+  <div class="simrow">
+    <div class="sim" id="sim" aria-label="Payroll app simulator">
+      <div class="sbar"><span id="sbTime">08:00</span><span class="r"><span class="q" id="sbQ" title="Records waiting to sync">0</span><button type="button" id="sbNet" data-a="net">LTE</button><span>87%</span></span></div>
+      <div class="scr" id="scr"></div>
+    </div>
+    <div>
+      <ol class="steps" id="steps">
+        <li data-s="face"><b>Face check-in</b>The camera finds a face, checks it is a live person, and clocks the worker in.</li>
+        <li data-s="ffb"><b>FFB check</b>Pick the field block and count ripe and unripe bunches plus loose fruit.</li>
+        <li data-s="ltt"><b>LTT loading</b>Assign the harvest to a loading ramp and a bin.</li>
+        <li data-s="ltv"><b>LTV dispatch</b>Choose the vehicle and driver and send the load to the mill.</li>
+        <li data-s="wb"><b>Weighbridge</b>Read gross weight, subtract tare, and print the docket.</li>
+      </ol>
+      <p class="note">Tap <b>LTE</b> in the phone's status bar to go offline. Records then queue on the device and sync when you reconnect, the way the real app handles estates with poor signal.</p>
+      <p class="note">This is a concept demo I built for this site with made-up sample data. It shows the workflow, not the production app's actual screens.</p>
+    </div>
+  </div>
+</section>
 
 <section id="projects">
   <p class="eyebrow">Projects</p>
@@ -257,7 +360,8 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
     </figure>
     <div>
       <h3>OPSMobile_Payroll</h3>
-      <p class="kind">Field operations and workforce suite</p>
+      <p class="kind">Estate field operations: attendance, FFB harvest, transport and weighbridge</p>
+      <a class="demolink" href="#demo">Try the interactive demo</a>
       <ul>
         <li>NFC badge verification, so staff check in with one tap.</li>
         <li>Pay slips printed on the spot from a mobile thermal printer.</li>
@@ -341,6 +445,143 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
     try { navigator.clipboard.writeText(el.textContent).then(done, function () { selectIt(); btn.textContent = 'Selected, press Ctrl+C'; }); }
     catch (e) { selectIt(); btn.textContent = 'Selected, press Ctrl+C'; }
   });
+})();
+</script>
+<script>
+/* Payroll simulator: one state object, one render() per screen, event delegation on the handset. */
+(function () {
+  var KEY = 'payroll-demo-v1', ORDER = ['face', 'ffb', 'ltt', 'ltv', 'wb'], TARE = 7820, GROSS = 18460;
+  var S = { screen: 'home', online: true, done: {}, queue: [], block: 'A12', ripe: 42, unripe: 3, loose: 18,
+            ramp: 'Ramp 2', bin: 'BIN-0417', plate: 'QSA 4821', driver: 'Driver 1', gross: 0, printed: false, busy: false, clock: '' };
+  try { var o = JSON.parse(localStorage.getItem(KEY)); if (o && o.queue) { S.queue = o.queue; S.done = o.done || {}; S.clock = o.clock || ''; } } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify({ queue: S.queue, done: S.done, clock: S.clock })); } catch (e) {} }
+  var sim = document.getElementById('sim'), scr = document.getElementById('scr'), steps = document.getElementById('steps');
+  var timer = null, lastKey = null;
+  function push(label) { S.queue.unshift({ t: label, ok: S.online }); if (S.queue.length > 8) S.queue.length = 8; save(); }
+  function pending() { return S.queue.filter(function (q) { return !q.ok; }).length; }
+  function chips(act, list, cur) { return '<div class="chips">' + list.map(function (v) { return '<button type="button" class="chip' + (v === cur ? ' on' : '') + '" data-a="' + act + '" data-v="' + v + '">' + v + '</button>'; }).join('') + '</div>'; }
+  function stepper(label, key) { return '<div class="stp"><span>' + label + '</span><div><button type="button" data-a="dec" data-v="' + key + '" aria-label="Less ' + label + '">&minus;</button><output>' + S[key] + '</output><button type="button" data-a="inc" data-v="' + key + '" aria-label="More ' + label + '">+</button></div></div>'; }
+  function num(n) { return n.toLocaleString('en-US'); }
+  function dots(list, r) { return list.map(function (p) { return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + r + '"/>'; }).join(''); }
+  var back = '<button type="button" class="back" data-a="go" data-v="home">&lsaquo; Home</button>';
+  var FACE = '<svg viewBox="0 0 130 170" aria-hidden="true"><ellipse cx="65" cy="70" rx="38" ry="48" fill="#2a3a33"/><path d="M10 170 q55 -70 110 0z" fill="#2a3a33"/><circle cx="51" cy="62" r="4" fill="#0d1512"/><circle cx="79" cy="62" r="4" fill="#0d1512"/><path d="M52 90 q13 9 26 0" stroke="#0d1512" stroke-width="3" fill="none"/></svg>';
+  var BUNCH = '<svg viewBox="0 0 300 84" aria-hidden="true"><g fill="#c2541b">' + dots([[120,36],[136,28],[152,36],[168,32],[128,50],[144,44],[160,50],[176,46],[136,62],[152,60],[168,62]], 9) + '</g><g fill="#7a2c12">' + dots([[144,32],[160,40],[136,54],[168,54],[152,50]], 6) + '</g><path d="M150 22 v-12 M150 10 q-30 -6 -52 10 M150 10 q30 -6 52 10" stroke="#1c7541" stroke-width="4" fill="none" stroke-linecap="round"/></svg>';
+  var TRUCK = '<svg viewBox="0 0 300 84" aria-hidden="true"><rect x="0" y="72" width="300" height="4" fill="#b7c7ba"/><g class="truck" id="truck"><rect x="40" y="30" width="78" height="32" rx="3" fill="#c2541b"/><rect x="118" y="38" width="30" height="24" rx="3" fill="#1c7541"/><rect x="128" y="42" width="14" height="9" fill="#dcefe2"/><circle cx="62" cy="66" r="8" fill="#16241a"/><circle cx="98" cy="66" r="8" fill="#16241a"/><circle cx="134" cy="66" r="8" fill="#16241a"/></g></svg>';
+
+  var V = {
+    home: function () {
+      var info = { face: ['FACE', 'Face check-in', 'Clock in with the camera'], ffb: ['FFB', 'FFB check', 'Count bunches by block'], ltt: ['LTT', 'LTT loading', 'Ramp and bin'], ltv: ['LTV', 'LTV dispatch', 'Vehicle and driver'], wb: ['WB', 'Weighbridge', 'Gross, tare, net, docket'] };
+      var h = '<div><h3>Payroll</h3><p class="sub">Estate Division 2 &middot; sample data</p></div>';
+      h += ORDER.map(function (k) { return '<button type="button" class="rowbtn" data-a="go" data-v="' + k + '"><span class="ic">' + info[k][0] + '</span><span class="tx"><b>' + info[k][1] + '</b><span>' + info[k][2] + '</span></span><span class="tick' + (S.done[k] ? ' on' : '') + '"></span></button>'; }).join('');
+      if (S.queue.length) {
+        h += '<div class="card"><span class="lbl">Sync queue</span><ul class="qlist">' + S.queue.slice(0, 5).map(function (q) { return '<li><span>' + q.t + '</span><span class="' + (q.ok ? 's">synced' : 'p">pending') + '</span></li>'; }).join('') + '</ul>';
+        h += '<button type="button" class="pbtn alt" data-a="sync"' + (S.online && pending() ? '' : ' disabled') + '>' + (S.online ? (pending() ? 'Sync ' + pending() + ' now' : 'All synced') : 'Offline, will sync later') + '</button>';
+        h += '<button type="button" class="back" data-a="reset">Reset demo</button></div>';
+      }
+      return h;
+    },
+    face: function () {
+      var ok = S.done.face;
+      return back + '<div><h3>Face check-in</h3><p class="sub">Hold the handset at face height</p></div>' +
+        '<div class="cam" id="cam">' + FACE + '<div class="ret"><i></i><i></i><i></i><i></i></div><div class="beam"></div><div class="hud"><span id="hudL">' + (ok ? 'LIVENESS PASS' : 'READY') + '</span><span id="hudR">' + (ok ? 'MATCH 97.4%' : '') + '</span></div></div>' +
+        '<div class="bar"><i id="prog" style="width:' + (ok ? 100 : 0) + '%"></i></div>' +
+        (ok ? '<div class="card"><dl class="kv"><dt>Worker</dt><dd>W-1042</dd><dt>Gang</dt><dd>Harvest 3</dd><dt>Clock-in</dt><dd>' + S.clock + '</dd></dl></div><button type="button" class="pbtn" data-a="go" data-v="ffb">Continue to FFB check</button>'
+            : '<button type="button" class="pbtn" data-a="scan">Scan face</button>');
+    },
+    ffb: function () {
+      return back + '<div class="art">' + BUNCH + '</div><div><h3>FFB check</h3><p class="sub">Fresh fruit bunches harvested today</p></div>' +
+        '<span class="lbl">Field block</span>' + chips('block', ['A12', 'B07', 'C03'], S.block) +
+        '<div class="card">' + stepper('Ripe bunches', 'ripe') + stepper('Unripe bunches', 'unripe') + stepper('Loose fruit (kg)', 'loose') + '</div>' +
+        '<div class="card"><dl class="kv"><dt>Total bunches</dt><dd>' + (S.ripe + S.unripe) + '</dd><dt>Ripe</dt><dd>' + S.ripe + '</dd></dl></div>' +
+        '<button type="button" class="pbtn" data-a="saveffb">Save tally</button>';
+    },
+    ltt: function () {
+      return back + '<div><h3>LTT loading</h3><p class="sub">Move the harvest from block ' + S.block + ' to a ramp</p></div>' +
+        '<span class="lbl">Loading ramp</span>' + chips('ramp', ['Ramp 1', 'Ramp 2', 'Ramp 3'], S.ramp) +
+        '<span class="lbl">Bin</span>' + chips('bin', ['BIN-0417', 'BIN-0422'], S.bin) +
+        '<div class="card"><dl class="kv"><dt>Bunches to load</dt><dd>' + (S.ripe + S.unripe) + '</dd><dt>Loose fruit</dt><dd>' + S.loose + ' kg</dd></dl></div>' +
+        '<button type="button" class="pbtn" data-a="saveltt">Confirm loading</button>';
+    },
+    ltv: function () {
+      return back + '<div class="art">' + TRUCK + '</div><div><h3>LTV dispatch</h3><p class="sub">' + S.bin + ' from ' + S.ramp + ' to the mill</p></div>' +
+        '<span class="lbl">Vehicle</span>' + chips('plate', ['QSA 4821', 'QSB 1907'], S.plate) +
+        '<span class="lbl">Driver</span>' + chips('driver', ['Driver 1', 'Driver 2'], S.driver) +
+        '<button type="button" class="pbtn" data-a="dispatch">Dispatch to mill</button>';
+    },
+    wb: function () {
+      var net = S.gross ? S.gross - TARE : 0;
+      var h = back + '<div><h3>Weighbridge</h3><p class="sub">' + S.plate + ' at the mill gate</p></div>' +
+        '<div class="card"><span class="lbl">Gross weight</span><span class="big" id="gross">' + num(S.gross) + ' kg</span><dl class="kv"><dt>Tare (empty vehicle)</dt><dd>' + num(TARE) + ' kg</dd><dt><b>Net FFB</b></dt><dd><b id="net">' + num(net) + ' kg</b></dd></dl></div>';
+      if (!S.gross) return h + '<button type="button" class="pbtn" data-a="weigh">Read scale</button>';
+      if (!S.printed) return h + '<button type="button" class="pbtn" data-a="print">Print docket</button>';
+      return h + '<div class="slipwrap"><div class="slip"><b>WEIGHBRIDGE DOCKET</b><br>No. WB-000317<hr><dl class="kv"><dt>Vehicle</dt><dd>' + S.plate + '</dd><dt>Driver</dt><dd>' + S.driver + '</dd><dt>Block</dt><dd>' + S.block + '</dd><dt>Bin</dt><dd>' + S.bin + '</dd><dt>Bunches</dt><dd>' + (S.ripe + S.unripe) + '</dd><dt>Gross</dt><dd>' + num(S.gross) + '</dd><dt>Tare</dt><dd>' + num(TARE) + '</dd><dt>NET KG</dt><dd>' + num(net) + '</dd></dl><hr>SAMPLE - NOT A REAL TICKET</div></div>' +
+        '<button type="button" class="pbtn" data-a="finish">Finish</button>';
+    }
+  };
+
+  function render() {
+    scr.innerHTML = V[S.screen]();
+    scr.scrollTop = 0;
+    var n = pending(), q = document.getElementById('sbQ'), net = document.getElementById('sbNet');
+    q.textContent = n; q.hidden = !n;
+    net.textContent = S.online ? 'LTE' : 'Offline'; net.className = S.online ? '' : 'off';
+    [].forEach.call(steps.children, function (li) { var k = li.getAttribute('data-s'); li.className = (k === S.screen ? 'cur ' : '') + (S.done[k] ? 'ok' : ''); });
+    if (lastKey) { var f = scr.querySelector(lastKey); if (f) f.focus(); lastKey = null; }
+  }
+  function go(s) { clearInterval(timer); clearTimeout(timer); S.busy = false; S.screen = s; render(); }
+  function hhmm() { var d = new Date(); return ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2); }
+
+  var A = {
+    go: function (v) { go(v); },
+    net: function () { S.online = !S.online; render(); },
+    sync: function () { S.queue.forEach(function (q) { q.ok = true; }); save(); render(); },
+    reset: function () { S.queue = []; S.done = {}; S.gross = 0; S.printed = false; save(); render(); },
+    block: function (v) { S.block = v; render(); }, ramp: function (v) { S.ramp = v; render(); }, bin: function (v) { S.bin = v; render(); },
+    plate: function (v) { S.plate = v; render(); }, driver: function (v) { S.driver = v; render(); },
+    inc: function (k) { S[k] = Math.min(999, S[k] + 1); render(); },
+    dec: function (k) { S[k] = Math.max(0, S[k] - 1); render(); },
+    scan: function (v, btn) {
+      if (S.busy) return; S.busy = true; btn.disabled = true; btn.textContent = 'Scanning...';
+      var cam = document.getElementById('cam'), prog = document.getElementById('prog'), L = document.getElementById('hudL'), R = document.getElementById('hudR'), p = 0;
+      cam.classList.add('scan');
+      timer = setInterval(function () {
+        p += 4; prog.style.width = p + '%';
+        L.textContent = p < 40 ? 'FACE FOUND' : p < 75 ? 'LIVENESS CHECK' : 'MATCHING';
+        R.textContent = p + '%';
+        if (p >= 100) { clearInterval(timer); S.busy = false; S.done.face = true; S.clock = hhmm(); push('Check-in W-1042'); render(); document.getElementById('cam').classList.add('flash'); }
+      }, 70);
+    },
+    saveffb: function () { S.done.ffb = true; push('FFB ' + S.block + ' x' + (S.ripe + S.unripe)); go('ltt'); },
+    saveltt: function () { S.done.ltt = true; push('LTT ' + S.ramp + ' ' + S.bin); go('ltv'); },
+    dispatch: function (v, btn) {
+      if (S.busy) return; S.busy = true; btn.disabled = true; btn.textContent = 'Dispatching...';
+      document.getElementById('truck').classList.add('go');
+      S.done.ltv = true; push('LTV ' + S.plate); S.gross = 0; S.printed = false;
+      timer = setTimeout(function () { go('wb'); }, 1000);
+    },
+    weigh: function (v, btn) {
+      if (S.busy) return; S.busy = true; btn.disabled = true; btn.textContent = 'Reading scale...';
+      var g = document.getElementById('gross'), n = document.getElementById('net'), cur = 0;
+      timer = setInterval(function () {
+        cur = Math.min(GROSS, cur + 1230); g.textContent = num(cur) + ' kg'; n.textContent = num(Math.max(0, cur - TARE)) + ' kg';
+        if (cur >= GROSS) { clearInterval(timer); S.busy = false; S.gross = GROSS; render(); }
+      }, 60);
+    },
+    print: function () { S.printed = true; S.done.wb = true; push('Docket WB-000317'); render(); scr.scrollTop = scr.scrollHeight; },
+    finish: function () { go('home'); }
+  };
+
+  sim.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-a]'); if (!b || b.disabled) return;
+    var a = b.getAttribute('data-a'), v = b.getAttribute('data-v');
+    if (a === 'inc' || a === 'dec') lastKey = '[data-a="' + a + '"][data-v="' + v + '"]';
+    A[a](v, b);
+  });
+  steps.addEventListener('click', function (e) { var li = e.target.closest('li'); if (li) go(li.getAttribute('data-s')); });
+  [].forEach.call(steps.children, function (li) { li.style.cursor = 'pointer'; });
+  function tick() { document.getElementById('sbTime').textContent = hhmm(); }
+  tick(); setInterval(tick, 30000);
+  render();
 })();
 </script>
 </body>
