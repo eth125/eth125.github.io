@@ -1,0 +1,1389 @@
+/* The simulated devices in the Projects section.
+   Each app keeps one fixed look in both site themes, so its colours are local to .sim, and every rule
+   for what is on the screen is scoped under .sim. The markup comes from src/sim. */
+
+.sim {
+  /* default palette: Payroll (green) */
+  --app-primary: #1c7541;
+  --app-soft: #dcefe2;
+  --app-bg: #f2f6f0;
+  --app-card: #ffffff;
+  --app-ink: #16241a;
+  --app-mut: #5d6e62;
+  --app-line: #d0dad1;
+  --app-ok: #1c7541;
+  --app-amber: #b8620f;
+  --app-red: #b3261e;
+  --app-cam: #0d1512;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 310px;
+  max-width: 100%;
+  height: 620px;
+  overflow: hidden;
+  border: 10px solid var(--shell);
+  border-radius: 38px;
+  outline: 1.5px solid var(--muted);
+  background: var(--app-bg);
+  color: var(--app-ink);
+  color-scheme: light;
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: 0 18px 44px rgb(var(--shadow) / 0.25);
+}
+
+.sim[data-app='store'] {
+  --app-primary: #3949ab;
+  --app-soft: #e3e6f7;
+  --app-bg: #f3f4fb;
+  --app-ink: #181d33;
+  --app-mut: #5c6380;
+  --app-line: #d5d9ea;
+}
+
+.sim[data-app='netpay'] {
+  --app-primary: #6a3fa0;
+  --app-soft: #ede3f7;
+  --app-bg: #f7f4fb;
+  --app-ink: #21172f;
+  --app-mut: #675d79;
+  --app-line: #ddd4e9;
+}
+
+.sim[data-app='gate'] {
+  --app-primary: #a8500e;
+  --app-soft: #fbe8d6;
+  --app-bg: #faf6f1;
+  --app-ink: #2a1d10;
+  --app-mut: #76675a;
+  --app-line: #e6dccf;
+}
+
+.sim button {
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.sim button:focus-visible {
+  outline: 2px solid var(--app-amber);
+  outline-offset: 2px;
+}
+
+.sim__nojs {
+  margin: auto;
+  padding: 24px;
+  color: var(--app-mut);
+  text-align: center;
+}
+
+/* ---- status bar ---- */
+
+.sim__status {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 16px;
+  background: var(--app-primary);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11.5px;
+}
+
+.sim__status-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sim__status button {
+  padding: 3px 9px;
+  border: 0;
+  border-radius: 10px;
+  background: rgb(255 255 255 / 0.2);
+  color: #fff;
+}
+
+.sim__status button.off {
+  background: #f0a23c;
+  color: #2a1a05;
+}
+
+.sim__status button:focus-visible {
+  outline-color: #fff;
+}
+
+.sim__queue {
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--app-primary);
+  font-weight: 600;
+}
+
+/* ---- screen ---- */
+
+.sim__screen {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  padding: 14px;
+  overflow-y: auto;
+  outline: none;
+}
+
+.sim h3 {
+  color: var(--app-ink);
+  font-size: 18px;
+  letter-spacing: 0;
+}
+
+.sim .sub {
+  color: var(--app-mut);
+  font-size: 12.5px;
+}
+
+.sim .back {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--app-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sim .card {
+  display: grid;
+  flex: none;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--app-line);
+  border-radius: 12px;
+  background: var(--app-card);
+}
+
+.sim .lbl {
+  color: var(--app-mut);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sim .mono {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.sim .big {
+  font-family: var(--mono);
+  font-size: 26px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.sim .big--sm {
+  font-size: 17px;
+}
+
+/* menu rows */
+
+.sim .rowbtn {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--app-line);
+  border-radius: 12px;
+  background: var(--app-card);
+  text-align: left;
+}
+
+.sim .rowbtn:active,
+.sim .pbtn:active,
+.sim .chip:active,
+.sim .tile:active,
+.sim .stp button:active {
+  transform: scale(0.97);
+}
+
+.sim .rowbtn .ic {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 32px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--app-soft);
+  color: var(--app-primary);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+}
+
+.sim .rowbtn .tx {
+  flex: 1;
+  min-width: 0;
+}
+
+.sim .rowbtn .tx b {
+  display: block;
+}
+
+.sim .rowbtn .tx span {
+  color: var(--app-mut);
+  font-size: 12px;
+}
+
+.sim .tick {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--app-line);
+  border-radius: 50%;
+}
+
+.sim .tick.on {
+  position: relative;
+  border-color: var(--app-ok);
+  background: var(--app-ok);
+}
+
+.sim .tick.on::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* buttons */
+
+.sim .pbtn {
+  flex: none;
+  margin-top: auto;
+  padding: 12px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--app-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.sim .pbtn[disabled] {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.sim .pbtn.alt {
+  margin-top: 0;
+  border: 1px solid var(--app-primary);
+  background: var(--app-card);
+  color: var(--app-primary);
+}
+
+/* A primary button that follows an alternative one sits right under it, not at the bottom. */
+.sim .pbtn.alt + .pbtn {
+  margin-top: 0;
+}
+
+.sim .mini {
+  flex: none;
+  padding: 5px 10px;
+  border: 1px solid var(--app-primary);
+  border-radius: 14px;
+  background: var(--app-card);
+  color: var(--app-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* The control to try next pulses gently. */
+.sim .nudge {
+  animation: sim-nudge 1.8s ease-out infinite;
+}
+
+/* chips, steppers, tiles */
+
+.sim .chips {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sim .chip {
+  padding: 5px 11px;
+  border: 1px solid var(--app-line);
+  border-radius: 16px;
+  background: var(--app-card);
+  font-size: 13px;
+}
+
+.sim .chip.on {
+  border-color: var(--app-primary);
+  background: var(--app-primary);
+  color: #fff;
+}
+
+.sim .stp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sim .stp div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sim .stp button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--app-line);
+  border-radius: 8px;
+  background: var(--app-bg);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.sim .stp output {
+  min-width: 34px;
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.sim .tiles {
+  display: grid;
+  flex: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.sim .tile {
+  display: grid;
+  gap: 1px;
+  padding: 7px 10px;
+  border: 1px solid var(--app-line);
+  border-radius: 10px;
+  background: var(--app-card);
+  text-align: left;
+}
+
+.sim .tile b {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sim .tile span {
+  color: var(--app-mut);
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+/* lists and rows */
+
+.sim .kv {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 10px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.sim .kv dt,
+.sim .kv dd {
+  margin: 0;
+}
+
+.sim .kv dd {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.sim .line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.sim .line b {
+  display: block;
+  font-size: 13.5px;
+}
+
+.sim .line > div > span {
+  color: var(--app-mut);
+  font-size: 12px;
+}
+
+.sim .line__end {
+  display: grid;
+  flex: none;
+  justify-items: end;
+  gap: 3px;
+}
+
+.sim .line__end .mono {
+  color: var(--app-ink);
+}
+
+.sim .pill {
+  flex: none;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sim .pill.s { background: #dcefe2; color: #1c7541; }
+.sim .pill.w { background: var(--app-soft); color: var(--app-primary); }
+.sim .pill.p { background: #fbead7; color: var(--app-amber); }
+
+.sim .qlist {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.sim .qlist li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sim .qlist .p { color: var(--app-amber); }
+.sim .qlist .w { color: var(--app-primary); }
+.sim .qlist .s { color: var(--app-ok); }
+
+.sim .status {
+  min-height: 1.4em;
+  color: var(--app-mut);
+  font-size: 12.5px;
+}
+
+.sim .status.ok {
+  color: var(--app-ok);
+}
+
+.sim .status.warn {
+  color: var(--app-amber);
+  font-weight: 600;
+}
+
+.sim .alert {
+  flex: none;
+  padding: 10px 12px;
+  border: 1px solid var(--app-red);
+  border-radius: 12px;
+  background: #fdecea;
+  color: #7a1b15;
+  font-size: 13px;
+}
+
+.sim .alert b {
+  display: block;
+}
+
+/* ---- camera: face check and NFC tap ---- */
+
+.sim .cam {
+  position: relative;
+  display: grid;
+  flex: none;
+  place-items: center;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--app-cam);
+}
+
+.sim .cam svg {
+  width: 130px;
+  height: 170px;
+  transition: transform 0.3s;
+}
+
+.sim .cam .ret {
+  position: absolute;
+  inset: 26px 56px;
+}
+
+.sim .cam .ret i {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 3px solid #6fe39a;
+}
+
+.sim .cam .ret i:nth-child(1) { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.sim .cam .ret i:nth-child(2) { top: 0; right: 0; border-bottom: 0; border-left: 0; }
+.sim .cam .ret i:nth-child(3) { bottom: 0; left: 0; border-top: 0; border-right: 0; }
+.sim .cam .ret i:nth-child(4) { right: 0; bottom: 0; border-top: 0; border-left: 0; }
+
+.sim .cam .beam {
+  position: absolute;
+  top: 26px;
+  right: 56px;
+  left: 56px;
+  height: 3px;
+  background: #6fe39a;
+  box-shadow: 0 0 12px #6fe39a;
+  opacity: 0;
+}
+
+.sim .cam.scan .beam {
+  opacity: 1;
+  animation: sim-beam 1.1s ease-in-out infinite alternate;
+}
+
+.sim .cam .hud {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  left: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: #6fe39a;
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.sim .cam.flash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  animation: sim-flash 0.35s ease-out forwards;
+}
+
+/* a refused scan turns the frame red */
+.sim .cam.fail .ret i {
+  border-color: #ff7b72;
+}
+
+.sim .cam.fail .hud {
+  color: #ff7b72;
+}
+
+/* a printed photo held up to the lens */
+.sim .cam.photo .face-art {
+  outline: 7px solid #f4f1e6;
+  background: #c9d3cc;
+  transform: rotate(-5deg) scale(0.78);
+}
+
+/* NFC and Employee Barcode: the face view gives way to a badge against the phone */
+.sim .cam .nfc-art,
+.sim .cam .barcode-art {
+  display: none;
+}
+
+.sim .cam.nfc .face-art,
+.sim .cam.nfc .ret,
+.sim .cam.nfc .beam,
+.sim .cam.barcode .face-art {
+  display: none;
+}
+
+.sim .cam.nfc .nfc-art,
+.sim .cam.barcode .barcode-art {
+  display: block;
+}
+
+.sim .cam.tapping .nfc-art path {
+  animation: sim-wave 0.9s ease-in-out infinite;
+}
+
+.sim .cam.tapping .nfc-art .w2 {
+  animation-delay: 0.15s;
+}
+
+.sim .cam.tapping .nfc-art .w3 {
+  animation-delay: 0.3s;
+}
+
+.sim .bar {
+  flex: none;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--app-line);
+}
+
+.sim .bar i {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--app-primary);
+  transition: width 0.25s;
+}
+
+/* ---- barcode and QR scanner ---- */
+
+.sim .scanner {
+  position: relative;
+  display: grid;
+  flex: none;
+  place-items: center;
+  gap: 8px;
+  padding: 14px 12px 10px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--app-cam);
+  color: #cfe9d8;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-align: center;
+}
+
+.sim .scanner__code {
+  width: 160px;
+  height: 36px;
+  background: repeating-linear-gradient(
+    90deg,
+    #fff 0 2px,
+    transparent 2px 4px,
+    #fff 4px 5px,
+    transparent 5px 9px,
+    #fff 9px 12px,
+    transparent 12px 14px
+  );
+}
+
+.sim .scanner .qr {
+  width: 66px;
+  height: 66px;
+  padding: 5px;
+  border-radius: 4px;
+  background: #fff;
+  fill: #15191d;
+}
+
+.sim .scanner i {
+  position: absolute;
+  top: 14px;
+  right: 16%;
+  left: 16%;
+  height: 2px;
+  background: #ff5a4f;
+  box-shadow: 0 0 8px #ff5a4f;
+  opacity: 0;
+}
+
+.sim .scanner.is-scanning i {
+  opacity: 1;
+  animation: sim-laser 0.6s ease-in-out infinite alternate;
+}
+
+.sim .scanner--qr {
+  --laser-travel: 72px;
+}
+
+/* ---- printed slips ---- */
+
+.sim .slipwrap {
+  flex: none;
+  overflow: hidden;
+  border-top: 6px solid var(--shell);
+  border-radius: 3px;
+}
+
+.sim .slip {
+  padding: 12px;
+  background: #fffef8;
+  color: #23262d;
+  font-family: var(--mono);
+  font-size: 11.5px;
+}
+
+.sim .slip hr {
+  margin: 6px 0;
+  border: 0;
+  border-top: 1px dashed #23262d;
+}
+
+.sim .slip .kv {
+  font-size: 11.5px;
+}
+
+.sim .slip__qr {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.sim .slip__qr .qr {
+  flex: none;
+  width: 62px;
+  height: 62px;
+  fill: #23262d;
+}
+
+.sim .slip.is-feeding {
+  animation: sim-feed 1.5s steps(15) both;
+}
+
+.sim .slip.is-jammed {
+  animation: sim-jam 0.7s steps(7) both;
+}
+
+/* ---- Payroll: illustrations, photo, force-sync phases ---- */
+
+.sim .art {
+  display: grid;
+  flex: none;
+  place-items: center;
+  height: 92px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--app-soft);
+}
+
+.sim .art svg {
+  width: 100%;
+  height: 84px;
+}
+
+.sim .truck.go {
+  animation: sim-drive 1s ease-in forwards;
+}
+
+.sim .snap {
+  justify-items: center;
+  text-align: center;
+}
+
+.sim .snap__frame {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--app-soft);
+  transition: transform 0.45s ease;
+}
+
+.sim .snap__frame svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sim .snap__frame.is-sideways {
+  transform: rotate(90deg);
+}
+
+.sim .phases {
+  display: grid;
+  flex: none;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  counter-reset: phase;
+}
+
+.sim .phases li {
+  position: relative;
+  padding: 8px 10px 8px 38px;
+  border: 1px solid var(--app-line);
+  border-radius: 10px;
+  background: var(--app-card);
+  color: var(--app-mut);
+  counter-increment: phase;
+}
+
+.sim .phases li::before {
+  content: counter(phase);
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  display: grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: var(--app-line);
+  color: var(--app-ink);
+  font: 600 10.5px/1 var(--mono);
+}
+
+.sim .phases li.cur {
+  border-color: var(--app-primary);
+  color: var(--app-ink);
+}
+
+.sim .phases li.cur::before {
+  background: var(--app-primary);
+  color: #fff;
+}
+
+.sim .phases li.ok {
+  color: var(--app-ink);
+}
+
+.sim .phases li.ok::before {
+  content: '\2713';
+  background: var(--app-ok);
+  color: #fff;
+}
+
+.sim .phases li.bad {
+  border-color: var(--app-red);
+  color: #7a1b15;
+}
+
+.sim .phases li.bad::before {
+  content: '!';
+  background: var(--app-red);
+  color: #fff;
+}
+
+/* ---- Gate: plate camera and the read-out under it ---- */
+
+.sim .gate {
+  display: grid;
+  flex: none;
+  gap: 10px;
+}
+
+.sim .gatecam {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #151c22;
+}
+
+.sim .gatecam svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sim .gatecam .plate {
+  fill: #f4f1e6;
+  stroke: #1b1f24;
+  stroke-width: 1;
+}
+
+.sim .gatecam text {
+  fill: #15191d;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.sim .gatecam text.paint {
+  fill: #e6d5bd;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.sim .gatecam text.strip {
+  fill: #9fb0bd;
+  font-size: 6px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.sim .gatecam .box {
+  fill: none;
+  stroke: #6fe39a;
+  stroke-width: 1.6;
+}
+
+.sim .gatecam .cand .box {
+  stroke-dasharray: 4 3;
+}
+
+.sim .gatecam .box.weak {
+  stroke: #e0a34b;
+}
+
+.sim .gatecam text.score {
+  fill: #6fe39a;
+  font-size: 8px;
+  font-weight: 600;
+  text-anchor: start;
+}
+
+.sim .gatecam text.score.weak {
+  fill: #e0a34b;
+}
+
+.sim .gatecam__hud {
+  position: absolute;
+  bottom: 6px;
+  left: 9px;
+  color: #6fe39a;
+  font-family: var(--mono);
+  font-size: 10.5px;
+}
+
+.sim .track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: 10.5px;
+}
+
+.sim .track li {
+  padding: 4px 0;
+  border: 1px solid var(--app-line);
+  border-radius: 6px;
+  background: var(--app-card);
+  color: var(--app-mut);
+  text-align: center;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sim .frags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-height: 24px;
+}
+
+.sim .frag {
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: var(--app-soft);
+  color: var(--app-primary);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sim .frag.noise {
+  border: 1px dashed var(--app-line);
+  background: transparent;
+  color: var(--app-mut);
+}
+
+/* Stage by stage: 1 candidate boxes, 2 the surviving box, 3 the text found, 4 the assembled plate. */
+.sim .gatecam .cand,
+.sim .gatecam .best,
+.sim .frag,
+.sim .assembled {
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.sim .gate[data-stage='1'] .cand,
+.sim .gate[data-stage='2'] .best,
+.sim .gate[data-stage='3'] .best,
+.sim .gate[data-stage='4'] .best,
+.sim .gate[data-stage='3'] .frag,
+.sim .gate[data-stage='4'] .frag,
+.sim .gate[data-stage='4'] .assembled {
+  opacity: 1;
+}
+
+.sim .gate[data-stage='4'] .frag.noise {
+  text-decoration: line-through;
+}
+
+.sim .gate[data-stage='1'] .track li:nth-child(-n + 1),
+.sim .gate[data-stage='2'] .track li:nth-child(-n + 2),
+.sim .gate[data-stage='3'] .track li:nth-child(-n + 3),
+.sim .gate[data-stage='4'] .track li:nth-child(-n + 4) {
+  border-color: var(--app-primary);
+  background: var(--app-primary);
+  color: #fff;
+}
+
+/* ---- toast, and the hint sheet used on small screens ---- */
+
+.sim__toast {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  z-index: 4;
+  max-width: 86%;
+  padding: 7px 14px;
+  border-radius: 16px;
+  background: rgb(20 24 30 / 0.92);
+  color: #fff;
+  font-size: 12.5px;
+  text-align: center;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+/* Beside the device there is room for the coach card, so the sheet stays away on wide screens. */
+.sim__sheet {
+  display: none;
+}
+
+/* ---- the Web API console ---- */
+
+.sim--console {
+  --app-primary: #5cc4e6;
+  --app-amber: #5cc4e6;
+  border: 1px solid #2a3b4e;
+  border-radius: 16px;
+  outline: 0;
+  background: #0c141e;
+  color: #d6e2ee;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.sim__titlebar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 14px;
+  border-bottom: 1px solid #1e2b3a;
+  color: #8fa3b8;
+  font-size: 11px;
+}
+
+.sim__titlebar i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #2c3d50;
+}
+
+.sim__titlebar span {
+  margin-left: 8px;
+}
+
+.sim .flow {
+  display: grid;
+  flex: none;
+  justify-items: center;
+}
+
+.sim .node {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #263546;
+  border-radius: 10px;
+  background: #111c29;
+}
+
+.sim .node b {
+  color: #fff;
+  font-family: var(--display);
+  font-size: 14px;
+}
+
+.sim .node span {
+  color: #8fa3b8;
+  font-size: 11px;
+}
+
+.sim .node--api {
+  border-color: #2b5d75;
+  background: #10232e;
+}
+
+.sim .dots {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.sim .dots i {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: #33475c;
+  transition: background-color 0.2s;
+}
+
+.sim .dots i.sending {
+  background: #e0a34b;
+}
+
+.sim .dots i.acked {
+  background: #4fdc8c;
+}
+
+.sim .wire {
+  position: relative;
+  width: 2px;
+  height: 24px;
+  background: #263546;
+}
+
+.sim .wire i {
+  position: absolute;
+  top: 0;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #5cc4e6;
+  opacity: 0;
+}
+
+.sim .wire.is-live i {
+  animation: sim-packet 0.5s ease-in forwards;
+}
+
+.sim .log {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 3px;
+  min-height: 96px;
+  margin: 0;
+  padding: 10px 12px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #070c12;
+  list-style: none;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.sim .log li {
+  color: #9fb3c8;
+  overflow-wrap: anywhere;
+}
+
+.sim .log li::before {
+  content: '> ';
+  color: #47607a;
+}
+
+.sim .log li.ok { color: #4fdc8c; }
+.sim .log li.warn { color: #e0a34b; }
+.sim .log li.bad { color: #ff7b72; }
+
+.sim .keys {
+  display: grid;
+  flex: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.sim .key {
+  padding: 9px 8px;
+  border: 1px solid #2b3d51;
+  border-radius: 9px;
+  background: #121d2a;
+  color: #e2edf7;
+  font-size: 11.5px;
+  line-height: 1.25;
+}
+
+.sim .key:nth-child(-n + 2) {
+  grid-column: 1 / -1;
+}
+
+.sim .key:first-child {
+  border-color: #5cc4e6;
+  background: #5cc4e6;
+  color: #08121c;
+  font-weight: 700;
+}
+
+.sim .key[disabled] {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.sim .key--finish {
+  grid-column: 1 / -1;
+  border-color: #4fdc8c;
+  background: #4fdc8c;
+  color: #08121c;
+  font-weight: 700;
+}
+
+/* ---- completion screen inside the device ---- */
+
+.sim__done {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.sim__done-badge {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #1c7541;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.sim__done .pbtn {
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* ---- animations ---- */
+
+@keyframes sim-nudge {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--app-primary) 55%, transparent); }
+  70%, 100% { box-shadow: 0 0 0 9px transparent; }
+}
+
+@keyframes sim-beam {
+  from { transform: translateY(0); }
+  to { transform: translateY(165px); }
+}
+
+@keyframes sim-flash {
+  from { opacity: 0.9; }
+  to { opacity: 0; }
+}
+
+@keyframes sim-wave {
+  0%, 100% { opacity: 0.2; }
+  40% { opacity: 1; }
+}
+
+@keyframes sim-laser {
+  from { transform: translateY(0); }
+  to { transform: translateY(var(--laser-travel, 34px)); }
+}
+
+@keyframes sim-feed {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes sim-jam {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(-55%); }
+}
+
+@keyframes sim-drive {
+  to { transform: translateX(330px); }
+}
+
+@keyframes sim-packet {
+  0% { transform: translateY(-4px); opacity: 1; }
+  100% { transform: translateY(20px); opacity: 0; }
+}
+
+@keyframes sim-sheet {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* ---- small screens: the device fits the viewport, and hints slide up inside it ---- */
+
+@media (max-width: 760px) {
+  .sim {
+    height: min(620px, 100svh - 96px);
+    min-height: 480px;
+  }
+
+  .sim__sheet:not([hidden]) {
+    --accent: #5cc4e6;
+    --accent-soft: #14323f;
+    --fg: #e8eef6;
+    --muted: #b7c4d6;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+    display: block;
+    max-height: 72%;
+    padding: 16px 16px 14px;
+    overflow-y: auto;
+    border-radius: 18px 18px 0 0;
+    background: #0f1a2b;
+    color: var(--fg);
+    font-family: var(--body);
+    font-size: 13px;
+    box-shadow: 0 -10px 30px rgb(0 0 0 / 0.3);
+    animation: sim-sheet 0.25s ease-out;
+  }
+
+  .sim__sheet .coach__title {
+    font-size: 1.05rem;
+  }
+
+  .sim .sim__sheet-ok {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px;
+    border: 0;
+    border-radius: 10px;
+    background: #5cc4e6;
+    color: #08121c;
+    font-weight: 700;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sim .nudge,
+  .sim .cam.scan .beam,
+  .sim .cam.flash::after,
+  .sim .cam.tapping .nfc-art path,
+  .sim .scanner.is-scanning i,
+  .sim .truck.go,
+  .sim .slip.is-feeding,
+  .sim .wire.is-live i,
+  .sim__sheet:not([hidden]) {
+    animation: none;
+  }
+
+  /* Without the pulse, the control to try next keeps a steady ring instead. */
+  .sim .nudge {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--app-primary) 40%, transparent);
+  }
+
+  /* A jammed slip still has to rest half-printed. */
+  .sim .slip.is-jammed {
+    animation-duration: 0.01s;
+  }
+}

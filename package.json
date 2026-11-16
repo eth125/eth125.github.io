@@ -1,0 +1,18 @@
+{
+  "name": "eth125.github.io",
+  "description": "Portfolio of Ethan Sia, Android software engineer",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
+    "vite": "^8.3.8"
+  }
+}

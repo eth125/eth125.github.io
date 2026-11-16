@@ -1,0 +1,239 @@
+/* Reset, typography and the small pieces every section shares. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--accent-strong);
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* ---- layout ---- */
+
+.wrap {
+  max-width: calc(var(--wrap) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+
+.section {
+  padding-block: clamp(52px, 8vw, 96px);
+  border-top: 1px solid var(--line);
+}
+
+.section--band {
+  background: var(--band);
+}
+
+.section h2 {
+  margin-top: 14px;
+  font-size: clamp(1.65rem, 3.4vw, 2.35rem);
+  letter-spacing: -0.02em;
+}
+
+.section .intro {
+  max-width: 42em;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 1.0625rem;
+}
+
+/* ---- shared pieces ---- */
+
+.eyebrow {
+  margin: 0;
+  color: var(--accent);
+  font: 600 0.75rem/1.2 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 20px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: 600 0.95rem/1.2 var(--body);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.btn:hover {
+  border-color: var(--accent-strong);
+  background: var(--accent-strong);
+  color: var(--on-accent);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--accent);
+}
+
+.btn--ghost:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.link-out {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 6px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.link-out:hover {
+  text-decoration: underline;
+}
+
+.link-out svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.icon-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Text for screen readers only. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip {
+  position: absolute;
+  top: -80px;
+  left: 8px;
+  z-index: 50;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.skip:focus {
+  top: 8px;
+  color: var(--bg);
+}

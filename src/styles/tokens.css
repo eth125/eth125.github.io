@@ -1,0 +1,83 @@
+/* Design tokens. Light is the default. The dark set applies when the system asks for it
+   (unless the visitor picked light) or when the visitor picked dark with the header toggle.
+   The dark values are listed twice on purpose: one block for the system setting, one for the toggle. */
+
+:root {
+  color-scheme: light;
+
+  /* colour */
+  --bg: #f3f6f9;
+  --band: #e9eff5;
+  --surface: #ffffff;
+  --fg: #0f1a2b;
+  --muted: #536079;
+  --line: #d3dbe6;
+  --accent: #0a6c8f;
+  --accent-strong: #08597a;
+  --accent-soft: #dff0f5;
+  --on-accent: #ffffff;
+  --paper: #fffef8;
+  --paper-ink: #23262d;
+  --shadow: 8 20 40; /* rgb triplet, used as rgb(var(--shadow) / alpha) */
+  --device: #151c27;
+  --device-hi: #252f3e;
+  --shell: #0f141b;
+  --closing-bg: #0f1a2b;
+  --icon-sun: none;
+  --icon-moon: block;
+
+  /* type */
+  --display: 'Space Grotesk Variable', 'Segoe UI', Arial, sans-serif;
+  --body: 'Inter Variable', 'Segoe UI', Arial, sans-serif;
+  --mono: 'JetBrains Mono Variable', Consolas, 'Courier New', monospace;
+
+  /* layout */
+  --wrap: 1080px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --radius: 12px;
+  --header-h: 60px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #0b131e;
+    --band: #0f1926;
+    --surface: #131e2e;
+    --fg: #e8eef6;
+    --muted: #94a3ba;
+    --line: #24344a;
+    --accent: #5cc4e6;
+    --accent-strong: #8ad8f1;
+    --accent-soft: #12303d;
+    --on-accent: #08121c;
+    --paper: #ece9dd;
+    --shadow: 0 0 0;
+    --device: #1a2637;
+    --device-hi: #293a52;
+    --closing-bg: #131e2e;
+    --icon-sun: block;
+    --icon-moon: none;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0b131e;
+  --band: #0f1926;
+  --surface: #131e2e;
+  --fg: #e8eef6;
+  --muted: #94a3ba;
+  --line: #24344a;
+  --accent: #5cc4e6;
+  --accent-strong: #8ad8f1;
+  --accent-soft: #12303d;
+  --on-accent: #08121c;
+  --paper: #ece9dd;
+  --shadow: 0 0 0;
+  --device: #1a2637;
+  --device-hi: #293a52;
+  --closing-bg: #131e2e;
+  --icon-sun: block;
+  --icon-moon: none;
+}
